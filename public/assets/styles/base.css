@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-blur {
+  background: url("/src/assets/images/bgimage.jpeg") rgba(193, 193, 207, 0.85)
+    center/cover no-repeat;
+  backdrop-filter: blur(100px);
+  background-blend-mode: color;
+}
