@@ -1,16 +1,18 @@
-import shoe from "@assets/images/shoe.png";
+import shoe from "../../../../public/assets/images/shoe.png";
 import useCart from "@hooks/useCart";
 import { AppProvider,  CartContext } from "@providers";
-import cartReducer, { CARTACTIONS } from "@providers/cartReducer";
+import cartReducer, { CARTACTIONS, subtotal, totalPrice } from "@providers/cartReducer";
 import { useContext, useState } from "react";
+
 
 export function CartItem({product}) {
   const {dispatch,} = useCart()
-      
+  // const Subtotal = subtotal(product)
+  // const Total = totalPrice(product)
+  // console.log("subtotal", Subtotal)
+  // console.log("totalPrice", Total)
   return (
     <>
-
-    
     <div className="flex justify-between items-center p-3 border rounded-md my-2 gap-3">
       {/* First */}
       <div className="flex  flex-col sm:flex-row gap-2 items-center">
@@ -32,7 +34,7 @@ export function CartItem({product}) {
           viewBox="0 0 21 22"
           fill="none"
           className="cursor-pointer"
-          onClick={_=>dispatch({action: CARTACTIONS.DECREASE, id: product.id})}
+          onClick={_=>dispatch({action: CARTACTIONS.DECREASE , id: product.id})}
         >
           <g clip-path="url(#clip0_207_1967)">
             <path
@@ -51,7 +53,8 @@ export function CartItem({product}) {
             </clipPath>
           </defs>
         </svg>
-        <p>{product?.quantity??1}</p>
+        {/* <p>{product?.quantity??1}</p> */}
+        <p>{product.quantity}</p>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="21"
@@ -93,7 +96,6 @@ export function CartItem({product}) {
               height="15"
               viewBox="0 0 12 15"
               fill="none"
-              onClick={() =>Remove(Card.id)} 
             >
               <path
                 d="M0 5.25H1.5V0.75H3L5.565 5.25H9V0.75H10.5V5.25H12V6.75H10.5V8.25H12V9.75H10.5V14.25H9L6.4275 9.75H3V14.25H1.5V9.75H0V8.25H1.5V6.75H0V5.25ZM3 5.25H3.8475L3 3.7725V5.25ZM3 6.75V8.25H5.565L4.71 6.75H3ZM9 11.25V9.75H8.1375L9 11.25ZM6.42 6.75L7.2825 8.25H9V6.75H6.42Z"
@@ -101,7 +103,7 @@ export function CartItem({product}) {
               />
             </svg>
           </span>
-          <span>242, 00</span>
+          <span>{product.price}, 00 </span>
         </p>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -110,6 +112,7 @@ export function CartItem({product}) {
           viewBox="0 0 28 30"
           fill="none"
           className="cursor-pointer"
+          onClick={_=>dispatch({type: CARTACTIONS.REMOVE, product})} 
         >
           <path
             d="M5.66663 30C4.74996 30 3.96551 29.6739 3.31329 29.0217C2.66107 28.3694 2.3344 27.5844 2.33329 26.6667V5H0.666626V1.66667H8.99996V0H19V1.66667H27.3333V5H25.6666V26.6667C25.6666 27.5833 25.3405 28.3683 24.6883 29.0217C24.0361 29.675 23.2511 30.0011 22.3333 30H5.66663ZM22.3333 5H5.66663V26.6667H22.3333V5ZM8.99996 23.3333H12.3333V8.33333H8.99996V23.3333ZM15.6666 23.3333H19V8.33333H15.6666V23.3333Z"

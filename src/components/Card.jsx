@@ -1,4 +1,5 @@
-import shoe from "@assets/images/shoe.png";
+// import shoe from "@assets/images/shoe.png";
+import shoe from "../../public/assets/images/shoe.png";
 import { Button } from "@components";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "@providers";
